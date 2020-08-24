@@ -1,14 +1,15 @@
 import React, {useState} from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { QualificationForm } from './QualificationForm'; 
+import { QualificationForm, SubmitHandler } from './QualificationForm'; 
 
 export const LandingPage: React.FC = () => {
+    const submitHandler: SubmitHandler = (data) => console.log('submitHandler called', data);
     return (
         <>
             <Row>
                 <Col>
-                    <QualificationForm />
+                    <QualificationForm  submitHandler={submitHandler} />
                 </Col>
             </Row>
             <Row>
