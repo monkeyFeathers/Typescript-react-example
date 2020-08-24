@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import Form from 'react-bootstrap/Form';
 
-export type InputValue = string;
-export type Validator = (label: string, value: InputValue) => string;
+type InputValue = string;
+
 export interface InputState {
     label: string;
     value: InputValue;
@@ -10,11 +10,10 @@ export interface InputState {
     validators: Validator[]; 
     errors: string[];
 }
-export interface FieldProps {
-    inputState: InputState;
-    updateFn: React.Dispatch<React.SetStateAction<InputState>>;
-}
 
+export const toInputState = (label: string, validators: Validator[] ): InputState => ({ label, value: '', touched: false, validators, errors: [] });
+
+type Validator = (label: string, value: InputValue) => string;
 const required: Validator = (label, value) => {
     const message = `${label} is required`;
     return value.length ? '' : message;
@@ -23,8 +22,16 @@ const isFloat: Validator = (label, value) => {
     const message = `${label} value must be a number`;
     return isNaN(parseFloat(value)) || !value.match(/^[0-9,.]+$/) ? message : '';
 };
-
 export const validators = { required, isFloat };
+
+type InputStatePredicate = (state: InputState) => boolean
+export const isInvalid: InputStatePredicate = (inputState) => inputState.touched && inputState.errors.length !== 0;
+export const isEmpty: InputStatePredicate = (inputState) => inputState.value.length === 0;
+
+export interface FieldProps {
+    inputState: InputState;
+    updateFn: React.Dispatch<React.SetStateAction<InputState>>;
+}
 
 export const ValidatedFormField: React.FC<FieldProps> = ({inputState, updateFn}) => {
     const [field, updateField] = useState<InputState>(inputState);
@@ -56,7 +63,7 @@ export const ValidatedFormField: React.FC<FieldProps> = ({inputState, updateFn})
                 onBlur={() => touch(field)}
                 placeholder={`Enter ${label}`}
             />
-            <Form.Text className="text-danger">{errors.join("; ")}</Form.Text> 
+            <Form.Text className="error-messages text-danger">{errors.join("; ")}</Form.Text> 
         </Form.Group>
     );
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { ValidatedFormField, InputState, Validator, validators } from './FormField';
+import { ValidatedFormField, InputState, validators, toInputState, isInvalid, isEmpty  } from './ValidatedFormField';
 
 // type SubmitHandler = (data: QualificationData) => React.Dispatch<React.SetStateAction<QualificationData>>
 export type SubmitHandler = (data: QualificationData) => void
@@ -18,11 +18,7 @@ export interface QualificationFormProps {
     submitHandler: SubmitHandler;
 }
 
-type InputStatePredicate = (state: InputState) => boolean
 const { required, isFloat } = validators
-const isInvalid: InputStatePredicate = (inputState) => inputState.touched && inputState.errors.length !== 0;
-const isEmpty: InputStatePredicate = (inputState) => inputState.value.length === 0;
-const toInputState = (label: string, validators: Validator[] ): InputState => ({ label, value: '', touched: false, validators, errors: [] });
 
 export const QualificationForm: React.FC<QualificationFormProps> = ({submitHandler}) => {
     const [purchasePrice, updatePurchasePrice] = useState<InputState>(toInputState('Auto purchase price (USD)', [ required, isFloat ])); 

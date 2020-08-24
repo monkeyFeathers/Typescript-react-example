@@ -48,8 +48,6 @@ describe('QualificationForm', () => {
         .simulate('change', { target: { value } });
     });
 
-    const submitButton = component.find("#submit_qualifications").at(0);
-    console.log(submitButton.debug());
     component.simulate('submit');
     expect(submitHandler.mock.calls.length).toBe(1);
     expect(submitHandler.mock.results[0].value).toStrictEqual({
