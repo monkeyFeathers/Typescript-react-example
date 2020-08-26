@@ -27,7 +27,7 @@ describe('ValidatedFormField', () => {
   describe('validators', () => {
     it('should show error message when validating \'isFloat\'', () => {
       const input = component.find('input');
-      const errorMessages = component.find('.error-messages').at(0);
+      const errorMessages = component.find('#test_field-feedback').at(0);
       expect(errorMessages.text()).toBe('');
       input.simulate('change', { target: { value: 'test' } });
       expect(errorMessages.text()).toBe('test field value must be a number');
@@ -37,7 +37,7 @@ describe('ValidatedFormField', () => {
       inputState.validators = [ required ];
       component = mount(<ValidatedFormField inputState={inputState} updateFn={updateFn} />);
       const input = component.find('input');
-      const errorMessages = component.find('.error-messages').at(0);
+      const errorMessages = component.find('#test_field-feedback').at(0);
       expect(errorMessages.text()).toBe('');
       input.simulate('change', { target: { value: '' } });
       expect(errorMessages.text()).toBe('test field is required');

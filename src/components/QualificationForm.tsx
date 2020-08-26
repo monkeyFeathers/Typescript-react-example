@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, FormEvent } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { ValidatedFormField, InputState, validators, toInputState, isInvalid, isEmpty  } from './ValidatedFormField';
@@ -34,7 +34,7 @@ export const QualificationForm: React.FC<QualificationFormProps> = ({submitHandl
         { inputState: yearlyIncome, updateFn: updateYearlyIncome }
     ];
 
-    const onSubmitHandler = (event: any): void => { 
+    const onSubmitHandler = (event: React.FormEvent): void => { 
         event.preventDefault()
         submitHandler({
             purchasePrice: parseFloat(purchasePrice.value),
