@@ -22,6 +22,9 @@ export const CreateAccountPage: React.FC<CreateAccountProps> = ({createAccountHa
     }
 
     return (
+        <>
+            <h1 className="h3">Congratulations!</h1>
+            <h2 className="h4">You have been pre-qualified. Create an account to continue</h2>
         <Form onSubmit={ onSubmitHandler } id="create_account_form">
             <ValidatedFormField inputState={userName} updateFn={updateUserName} type="email" />
             <ValidatedFormField inputState={password} updateFn={updatePassword} type="password" />
@@ -53,5 +56,6 @@ export const CreateAccountPage: React.FC<CreateAccountProps> = ({createAccountHa
                 Create Account
             </Button>
         </Form>
+    </>
     );
 }
