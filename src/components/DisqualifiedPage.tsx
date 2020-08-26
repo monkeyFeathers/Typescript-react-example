@@ -3,7 +3,7 @@ import React from 'react';
 type DisqaulificationProps = {
     message: string
 }
-export const DisqualifiedPage: React.FC<DisqaulificationProps> = ({message}) => {
+const DisqualifiedPage: React.FC<DisqaulificationProps> = ({message}) => {
     return (
         <div>
             <h1>Something went wrong</h1>
@@ -14,3 +14,5 @@ export const DisqualifiedPage: React.FC<DisqaulificationProps> = ({message}) => 
         </div>
     );
 };
+
+export default DisqualifiedPage;

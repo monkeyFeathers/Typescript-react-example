@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { CreateAccountPage } from '../../components/CreateAccountPage';
+import CreateAccountPage from '../../components/CreateAccountPage';
 
 describe('CreateAccountPage', () => {
   let component;
@@ -44,7 +44,7 @@ describe('CreateAccountPage', () => {
         .simulate('change', { target: { value } });
     });
 
-    component.simulate('submit');
+    component.find('form').simulate('submit');
     expect(mockHandler).toBeCalled();
     expect(mockHandler).toBeCalledWith({
       email: 'test@example.com', password: 'test1234'

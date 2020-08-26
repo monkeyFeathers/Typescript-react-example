@@ -2,7 +2,7 @@ import React, { useState, FormEvent } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { QualificationData } from '../api';
-import { ValidatedFormField, InputState, validators, toInputState, isInvalid, isEmpty  } from './ValidatedFormField';
+import ValidatedFormField, { InputState, validators, toInputState, isInvalid, isEmpty  } from './ValidatedFormField';
 
 export type SubmitHandler = (data: QualificationData) => void
 
@@ -12,7 +12,7 @@ export interface QualificationFormProps {
 
 const { required, isFloat } = validators
 
-export const QualificationForm: React.FC<QualificationFormProps> = ({submitHandler}) => {
+const QualificationForm: React.FC<QualificationFormProps> = ({submitHandler}) => {
     const [purchasePrice, updatePurchasePrice] = useState<InputState>(toInputState('Auto purchase price (USD)', [ required, isFloat ])); 
     const [autoMake, updateAutoMake] = useState<InputState>(toInputState('Auto Make',[ required ]));
     const [autoModel, updateAutoModel] = useState<InputState>(toInputState('Auto Model', [required]));
@@ -55,4 +55,6 @@ export const QualificationForm: React.FC<QualificationFormProps> = ({submitHandl
             </Button>
         </Form>
     );
-}
+};
+
+export default QualificationForm;

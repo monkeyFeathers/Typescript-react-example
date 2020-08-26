@@ -7,7 +7,7 @@ type LangingPageProps = {
     marketingMessage: React.ReactNode;
 }
 
-export const LandingPage: React.FC<LangingPageProps> = ({children, marketingMessage}) => {
+const LandingPage: React.FC<LangingPageProps> = ({children, marketingMessage}) => {
     return (
         <>
             <Row className="justify-content-md-center">
@@ -22,4 +22,6 @@ export const LandingPage: React.FC<LangingPageProps> = ({children, marketingMess
             </Row>
         </>
     );
-}
+};
+
+export default LandingPage;

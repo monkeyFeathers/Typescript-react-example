@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { DisqaulifiedPage } from '../../components/DisqualifiedPage';
+import DisqaulifiedPage from '../../components/DisqualifiedPage';
 
 describe('DisqualifiedPage', () => {
     it('should render without errors', () => {

@@ -50,7 +50,7 @@ export type FieldProps = {
     type?: string;
 }
 
-export const ValidatedFormField: React.FC<FieldProps> = ({inputState, updateFn, type='text'}) => {
+const ValidatedFormField: React.FC<FieldProps> = ({inputState, updateFn, type='text'}) => {
     const [field, updateField] = useState<InputState>(inputState);
     const { errors, touched, value, label } = field;
     const id = label.toLowerCase().split(" ").join("_");
@@ -85,4 +85,6 @@ export const ValidatedFormField: React.FC<FieldProps> = ({inputState, updateFn, 
             <Form.Text className="text-danger" role="alert" id={`${id}-feedback`}>{errors.join("; ")}</Form.Text> 
         </Form.Group>
     );
-}
+};
+
+export default ValidatedFormField;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { QualificationForm } from '../../components/QualificationForm';
+import QualificationForm from '../../components/QualificationForm';
 
 describe('QualificationForm', () => {
   let component;

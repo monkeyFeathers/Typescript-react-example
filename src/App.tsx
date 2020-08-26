@@ -3,10 +3,10 @@ import { useSelector, useDispatch }  from 'react-redux';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Spinner from 'react-bootstrap/Spinner';
-import { LandingPage } from './components/LandingPage';
-import { DisqualifiedPage } from './components/DisqualifiedPage';
-import { CreateAccountPage } from './components/CreateAccountPage';
-import { QualificationForm } from './components/QualificationForm';
+import LandingPage from './components/LandingPage';
+import DisqualifiedPage from './components/DisqualifiedPage';
+import CreateAccountPage from './components/CreateAccountPage';
+import QualificationForm from './components/QualificationForm';
 import { RootState, Content, requestQualify } from './store/AppState';
 
 const marketingMessage = (
