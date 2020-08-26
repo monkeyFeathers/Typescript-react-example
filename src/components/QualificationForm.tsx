@@ -1,18 +1,10 @@
 import React, { useState, FormEvent } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { QualificationData } from '../api';
 import { ValidatedFormField, InputState, validators, toInputState, isInvalid, isEmpty  } from './ValidatedFormField';
 
-// type SubmitHandler = (data: QualificationData) => React.Dispatch<React.SetStateAction<QualificationData>>
 export type SubmitHandler = (data: QualificationData) => void
-
-export interface QualificationData {
-    purchasePrice: number;
-    autoMake: string;
-    autoModel: string;
-    yearlyIncome: number;
-    creditScore: number;
-}
 
 export interface QualificationFormProps {
     submitHandler: SubmitHandler;
