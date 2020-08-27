@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import ValidatedFormField, { InputState, validators, toInputState, isInvalid, isEmpty  } from './ValidatedFormField';
-
-const { required, minLength, includesChars, isEmail } = validators;
+import Field from './ValidatedFormField/Field';
+import { InputState, toInputState, isInvalid, isEmpty  } from './ValidatedFormField/types';
+import { required, minLength, includesChars, isEmail } from './ValidatedFormField/validators';
 
 type CreateAccountHandler = (data: any) => void;
 
@@ -26,8 +26,8 @@ const CreateAccountPage: React.FC<CreateAccountProps> = ({createAccountHandler})
             <h1 className="h3">Congratulations!</h1>
             <h2 className="h4">You have been pre-qualified. Create an account to continue</h2>
             <Form onSubmit={ onSubmitHandler } id="create_account_form">
-                <ValidatedFormField inputState={userName} updateFn={updateUserName} type="email" />
-                <ValidatedFormField inputState={password} updateFn={updatePassword} type="password" />
+                <Field inputState={userName} updateFn={updateUserName} type="email" />
+                <Field inputState={password} updateFn={updatePassword} type="password" />
                 <Form.Group controlId="verify_password">
                     <Form.Label>Verify Password</Form.Label>
                     <Form.Control

@@ -1,7 +1,8 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import ValidatedFormField, { validators, toInputState } from '../../components/ValidatedFormField';
-const { required, isFloat } = validators;
+import ValidatedFormField from '../../components/ValidatedFormField/Field';
+import { required, isFloat } from '../../components/ValidatedFormField/validators';
+import { toInputState } from '../../components/ValidatedFormField/types';
 
 describe('ValidatedFormField', () => {
   let component;

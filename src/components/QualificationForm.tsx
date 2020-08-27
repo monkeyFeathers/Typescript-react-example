@@ -2,15 +2,15 @@ import React, { useState, FormEvent } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { QualificationData } from '../api';
-import ValidatedFormField, { InputState, validators, toInputState, isInvalid, isEmpty  } from './ValidatedFormField';
+import Field from './ValidatedFormField/Field';
+import { InputState, toInputState, isInvalid, isEmpty  } from './ValidatedFormField/types';
+import { required, isFloat } from './ValidatedFormField/validators';
 
 export type SubmitHandler = (data: QualificationData) => void
 
 export interface QualificationFormProps {
     submitHandler: SubmitHandler;
 }
-
-const { required, isFloat } = validators
 
 const QualificationForm: React.FC<QualificationFormProps> = ({submitHandler}) => {
     const [purchasePrice, updatePurchasePrice] = useState<InputState>(toInputState('Auto purchase price (USD)', [ required, isFloat ])); 
@@ -39,7 +39,7 @@ const QualificationForm: React.FC<QualificationFormProps> = ({submitHandler}) =>
 
     return (
         <Form onSubmit={ onSubmitHandler } id="qualificationForm">
-            { fields.map( field => <ValidatedFormField {...{...field, key: field.inputState.label}} />)} 
+            { fields.map( field => <Field {...{...field, key: field.inputState.label}} />)} 
             <Form.Group controlId="userEstimatedCreditScore">
                 <Form.Label className="w-100"><span>Credit Score</span><span className="float-right">{creditScore}</span></Form.Label>
                 <Form.Control type="range" value={creditScore} min="300" max="850" onChange={(event) => updateCreditScore(parseInt(event.target.value, 10))} />

@@ -1,48 +1,6 @@
 import React, {useState} from 'react';
 import Form from 'react-bootstrap/Form';
-
-type InputValue = string;
-
-export type InputState = {
-    label: string;
-    value: InputValue;
-    touched: boolean;
-    validators: Validator[]; 
-    errors: string[];
-}
-
-export const toInputState = (label: string, validators: Validator[] ): InputState => ({ label, value: '', touched: false, validators, errors: [] });
-
-type Validator = (label: string, value: InputValue) => string;
-const required: Validator = (label, value) => {
-    const message = `${label} is required`;
-    return value.length ? '' : message;
-}
-const isFloat: Validator = (label, value) => {
-    const message = `${label} value must be a number`;
-    return isNaN(parseFloat(value)) || !value.match(/^[0-9,.]+$/) ? message : '';
-};
-
-const isEmail: Validator = (label, value) => {
-    const message = `${label} must be a valid email address`;
-    return RegExp(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i).test(value) ? '' : message; 
-}
-
-const minLength: (v: number) => Validator = (length) => (label, value) => {
-    const message = `${label} must be at least ${length} characters in length`;
-    return value.length === length ? '' : message;
-}
-
-const includesChars: (v: string, m?: string) => Validator = (character, msg) => (label, value) => {
-    const message = msg ? msg : `${label} must inlcude ${character}`;
-    return RegExp(character).test(value) ? '' : message;
-}
-
-export const validators = { required, isFloat, isEmail, minLength, includesChars };
-
-type InputStatePredicate = (state: InputState) => boolean
-export const isInvalid: InputStatePredicate = (inputState) => inputState.touched && inputState.errors.length !== 0;
-export const isEmpty: InputStatePredicate = (inputState) => inputState.value.length === 0;
+import { InputState, InputValue } from './types';
 
 export type FieldProps = {
     inputState: InputState;
