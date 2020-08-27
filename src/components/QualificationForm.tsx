@@ -1,4 +1,4 @@
-import React, { useState, FormEvent } from 'react';
+import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { QualificationData } from '../api';
@@ -38,7 +38,7 @@ const QualificationForm: React.FC<QualificationFormProps> = ({submitHandler}) =>
     };
 
     return (
-        <Form onSubmit={ onSubmitHandler } id="qualificationForm">
+        <Form onSubmit={ onSubmitHandler } id="qualification_form">
             { fields.map( field => <Field {...{...field, key: field.inputState.label}} />)} 
             <Form.Group controlId="userEstimatedCreditScore">
                 <Form.Label className="w-100"><span>Credit Score</span><span className="float-right">{creditScore}</span></Form.Label>

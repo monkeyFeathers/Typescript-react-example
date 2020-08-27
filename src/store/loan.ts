@@ -53,7 +53,7 @@ const toPageFromLoanStatus = (loanStatus: LoanStatus): Content => {
     }
 }
 
-const loanSlice = createSlice({
+export const loanSlice = createSlice({
     name: 'loan',
     initialState,
     reducers: {

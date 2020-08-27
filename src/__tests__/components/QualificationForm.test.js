@@ -11,7 +11,7 @@ describe('QualificationForm', () => {
   });
 
   it('should render without errors', () => {
-    const wrapper = component.find("#qualificationForm").at(0);
+    const wrapper = component.find("#qualification_form").at(0);
     expect(wrapper.length).toBe(1);
   });
 

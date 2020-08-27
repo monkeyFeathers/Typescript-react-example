@@ -5,7 +5,7 @@ type DisqaulificationProps = {
 }
 const DisqualifiedPage: React.FC<DisqaulificationProps> = ({message}) => {
     return (
-        <div>
+        <div id="disqualified">
             <h1>Something went wrong</h1>
             <p className="disqualify-message">{message}</p>
             <p className="contact-agent">

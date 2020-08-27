@@ -7,7 +7,7 @@ import LandingPage from './components/LandingPage';
 import DisqualifiedPage from './components/DisqualifiedPage';
 import CreateAccountPage from './components/CreateAccountPage';
 import QualificationForm from './components/QualificationForm';
-import { RootState, Content, requestQualify } from './store/AppState';
+import { RootState, Content, requestQualify } from './store/loan';
 
 const marketingMessage = (
     <div>
