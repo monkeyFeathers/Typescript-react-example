@@ -1,16 +1,21 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import ValidatedFormField from '../../components/ValidatedFormField/Field';
-import { required, isFloat } from '../../components/ValidatedFormField/validators';
+import {
+  required,
+  isFloat,
+} from '../../components/ValidatedFormField/validators';
 import { toInputState } from '../../components/ValidatedFormField/types';
 
 describe('ValidatedFormField', () => {
   let component;
-  const inputState = toInputState('test field', [ required, isFloat ]);
-  const updateFn = jest.fn(x => x);
+  const inputState = toInputState('test field', [required, isFloat]);
+  const updateFn = jest.fn((x) => x);
 
   beforeEach(() => {
-    component = mount(<ValidatedFormField inputState={inputState} updateFn={updateFn}/>);
+    component = mount(
+      <ValidatedFormField inputState={inputState} updateFn={updateFn} />
+    );
   });
 
   it('should render without errors', () => {
@@ -18,15 +23,15 @@ describe('ValidatedFormField', () => {
     expect(wrapper.length).toBe(1);
   });
 
-  it('should invoke \'updateFn\' on \'change\' event', () => {
+  it("should invoke 'updateFn' on 'change' event", () => {
     const input = component.find('input');
-    input.simulate('change', { target: { value: '100' } })
+    input.simulate('change', { target: { value: '100' } });
     expect(updateFn.mock.calls.length).toBe(1);
     // expect(updateFn.mock.results[0].value).toBe('100');
   });
 
   describe('validators', () => {
-    it('should show error message when validating \'isFloat\'', () => {
+    it("should show error message when validating 'isFloat'", () => {
       const input = component.find('input');
       const errorMessages = component.find('#test_field-feedback').at(0);
       expect(errorMessages.text()).toBe('');
@@ -34,9 +39,11 @@ describe('ValidatedFormField', () => {
       expect(errorMessages.text()).toBe('test field value must be a number');
     });
 
-    it('should show error message when validating \'required\'', () => {
-      inputState.validators = [ required ];
-      component = mount(<ValidatedFormField inputState={inputState} updateFn={updateFn} />);
+    it("should show error message when validating 'required'", () => {
+      inputState.validators = [required];
+      component = mount(
+        <ValidatedFormField inputState={inputState} updateFn={updateFn} />
+      );
       const input = component.find('input');
       const errorMessages = component.find('#test_field-feedback').at(0);
       expect(errorMessages.text()).toBe('');
@@ -44,5 +51,4 @@ describe('ValidatedFormField', () => {
       expect(errorMessages.text()).toBe('test field is required');
     });
   });
-
 });
