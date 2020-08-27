@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import Field from './ValidatedFormField/Field';
 import {
   InputState,
@@ -49,72 +51,74 @@ const CreateAccountPage: React.FC = () => {
   return (
     <>
       {showForm ? (
-        <>
-          <h1 className="h3">Congratulations!</h1>
-          <h2 className="h4">
-            You have been pre-qualified. Create an account to continue
-          </h2>
-          <Form onSubmit={onSubmitHandler} id="create_account_form">
-            <Field
-              inputState={userName}
-              updateFn={updateUserName}
-              type="email"
-            />
-            <Field
-              inputState={password}
-              updateFn={updatePassword}
-              type="password"
-            />
-            <Form.Group controlId="verify_password">
-              <Form.Label>Verify Password</Form.Label>
-              <Form.Control
-                type="password"
-                value={verifyPassword.value}
-                aria-describedby="verfiy_password-feedback"
-                isInvalid={
-                  verifyPassword.touched &&
-                  verifyPassword.value !== password.value
-                }
-                onChange={({ target: { value } }) =>
-                  updateVerifyPassword({ ...verifyPassword, value })
-                }
-                onBlur={() =>
-                  updateVerifyPassword({ ...verifyPassword, touched: true })
-                }
+        <Row className="justify-content-md-center">
+          <Col xs={12} md={6}>
+            <h1 className="h3">Congratulations!</h1>
+            <h2 className="h4">
+              You have been pre-qualified. Create an account to continue
+            </h2>
+            <Form onSubmit={onSubmitHandler} id="create_account_form">
+              <Field
+                inputState={userName}
+                updateFn={updateUserName}
+                type="email"
               />
-              {verifyPassword.touched &&
-              verifyPassword.value !== password.value ? (
-                <Form.Text
-                  className="text-danger"
-                  role="alert"
-                  id="verify_password-feedback"
-                >
-                  Does not match password
-                </Form.Text>
-              ) : (
-                ''
-              )}
-            </Form.Group>
-            <Button
-              id="create_account"
-              variant="primary"
-              disabled={
-                [userName, password].some((inputState) =>
-                  isInvalid(inputState)
-                ) ||
-                [userName, password].some((inputState) =>
-                  isEmpty(inputState)
-                ) ||
-                password.value !== verifyPassword.value
-              }
-              type="submit"
-            >
-              Create Account
-            </Button>
-          </Form>
-        </>
+              <Field
+                inputState={password}
+                updateFn={updatePassword}
+                type="password"
+              />
+              <Form.Group controlId="verify_password">
+                <Form.Label>Verify Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  value={verifyPassword.value}
+                  aria-describedby="verfiy_password-feedback"
+                  isInvalid={
+                    verifyPassword.touched &&
+                    verifyPassword.value !== password.value
+                  }
+                  onChange={({ target: { value } }) =>
+                    updateVerifyPassword({ ...verifyPassword, value })
+                  }
+                  onBlur={() =>
+                    updateVerifyPassword({ ...verifyPassword, touched: true })
+                  }
+                />
+                {verifyPassword.touched &&
+                verifyPassword.value !== password.value ? (
+                  <Form.Text
+                    className="text-danger"
+                    role="alert"
+                    id="verify_password-feedback"
+                  >
+                    Does not match password
+                  </Form.Text>
+                ) : (
+                  ''
+                )}
+              </Form.Group>
+              <Button
+                id="create_account"
+                variant="primary"
+                disabled={
+                  [userName, password].some((inputState) =>
+                    isInvalid(inputState)
+                  ) ||
+                  [userName, password].some((inputState) =>
+                    isEmpty(inputState)
+                  ) ||
+                  password.value !== verifyPassword.value
+                }
+                type="submit"
+              >
+                Create Account
+              </Button>
+            </Form>
+          </Col>
+        </Row>
       ) : (
-        <h2> Welcome</h2>
+        <h1 className="h3">Account successfully created</h1>
       )}
     </>
   );
